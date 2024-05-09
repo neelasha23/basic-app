@@ -26,10 +26,16 @@ jobs:
         env:
           PLOOMBER_CLOUD_KEY: ${{ secrets.PLOOMBER_CLOUD_KEY }}
         run: |
-          ploomber-cloud deploy --config ploomber-cloud.dev.json --watch-incremental
+          ploomber-cloud deploy --config ploomber-cloud.dev.json --watch-incremental | tee watch.log
         # The --watch-incremental flag will print deployment status and deployment
         # log updates to the GitHub logs.
         # To learn more, visit: https://docs.cloud.ploomber.io/en/latest/user-guide/github.html
+
+      - name: Check for failure
+        run: |
+          if grep -q "Deployment failed" watch.log; then
+          exit 1
+          fi
 
   deploy-to-ploomber-cloud-prod:
     runs-on: ubuntu-latest
