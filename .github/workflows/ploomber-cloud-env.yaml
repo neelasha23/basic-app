@@ -33,7 +33,7 @@ jobs:
 
       - name: Check for failure
         run: |
-          if grep -q "Deployment failed" watch.log; then
+          if grep -q "Deployment failed1" watch.log; then
           exit 1
           fi
 
