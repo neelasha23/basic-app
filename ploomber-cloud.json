@@ -1,0 +1,7 @@
+{
+    "id": "holy-base-5713",
+    "type": "streamlit",
+    "labels": [
+        "deploy-to-eks"
+    ]
+}
